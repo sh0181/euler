@@ -25,4 +25,79 @@ grid = [[ 8,  2, 22, 97, 38, 15, 00, 40, 00, 75,  4,  5,  7, 78, 52, 12, 50, 77,
         [20, 73, 35, 29, 78, 31, 90,  1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57,  5, 54],
         [ 1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52,  1, 89, 19, 67, 48]]
 
-print(grid[0][0])
+
+# print(grid[0][0])
+
+def uu(y, x):
+    if y < 4:
+        return 0
+    return (grid[y][x]) * (grid[y - 1][x]) * (grid[y - 2][x]) * (grid[y - 3][x])
+
+
+def ur(y, x):
+    if y < 4 or x > 16:
+        return 0
+    return (grid[y][x]) * (grid[y - 1][x + 1]) * (grid[y - 2][x + 2]) * (grid[y - 3][x + 3])
+
+
+def rr(y, x):
+    if x > 16:
+        return 0
+    return (grid[y][x]) * (grid[y][x + 1]) * (grid[y][x + 2]) * (grid[y][x + 3])
+
+
+def dr(y, x):
+    if y > 16 or x > 16:
+        return 0
+    return (grid[y][x]) * (grid[y + 1][x + 1]) * (grid[y + 2][x + 2]) * (grid[y + 3][x + 3])
+
+
+def dd(y, x):
+    if y > 16:
+        return 0
+    return (grid[y][x]) * (grid[y + 1][x]) * (grid[y + 2][x]) * (grid[y + 3][x])
+
+
+def dl(y, x):
+    if y > 16 or x < 4:
+        return 0
+    return (grid[y][x]) * (grid[y + 1][x - 1]) * (grid[y + 2][x - 2]) * (grid[y + 3][x - 3])
+
+
+def ll(y, x):
+    if x < 4:
+        return 0
+    return (grid[y][x]) * (grid[y][x - 1]) * (grid[y][x - 2]) * (grid[y][x - 3])
+
+
+def ul(y, x):
+    if y < 4 or x < 4:
+        return 0
+    return (grid[y][x]) * (grid[y - 1][x - 1]) * (grid[y - 2][x - 2]) * (grid[y - 3][x - 3])
+
+# print (uu(6,8))
+
+result_old = 0
+result_temp = 0
+result_new = 0
+
+for y in range (0, len(grid)):
+    for x in range (0, len(grid[y])):
+        result_temp = result_old
+        result_new = max(uu(y, x), ur(y, x), rr(y, x), dr(y, x), dd(y, x), dl(y, x), ll(y, x), ul(y, x))
+        if result_new > result_temp:
+            result_old = result_new
+
+
+print (result_old)
+
+
+        # print(grid[y][x])
+        # print(uu(y, x))
+        # print(ur(y, x))
+        # print(rr(y, x))
+        # print(dr(y, x))
+        # print(dd(y, x))
+        # print(dl(y, x))
+        # print(ll(y, x))
+        # print(ul(y, x))
