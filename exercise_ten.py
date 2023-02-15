@@ -6,7 +6,7 @@
 
 sum = 0
 
-for i in range (3,2000000):
+for i in range (3,2000001):
         for j in range(2, i+1):
             if i % j == 0: #if i divides by j with no remainder then j is a factor so i isn't prime
                 break

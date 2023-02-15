@@ -12,4 +12,4 @@ def largest_prime_factor(n):
             return i
 
 
-print(largest_prime_factor(13195))
+print(largest_prime_factor(600851475143))
